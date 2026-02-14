@@ -1,4 +1,7 @@
+import { test, expect } from '@playwright/test';
+
 const BasePage = require('./BasePage');
+
 
 class ScanSelectionPage extends BasePage {
   constructor(page) {
@@ -31,7 +34,7 @@ class ScanSelectionPage extends BasePage {
   async bookAScan(){
     await this.typeDOB("02-13-2000"); //TODO: Instead of hardcoding use date from 19 years ago
     await this.selectGender("Female");
-    await this.selectFirstScanPackage();
+    await this.selectFirstScanPackage();   
     await this.continue();
   }
 
