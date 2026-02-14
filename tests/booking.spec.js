@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test';
 
 const LoginPage = require('../pages/LoginPage');
 const HomePage = require('../pages/HomePage');
+const ScanSelectionPage = require('../pages/ScanSelectionPage');
 
 test.describe('Ezra Booking Flow', () => {
 
@@ -10,17 +11,17 @@ test.describe('Ezra Booking Flow', () => {
 
     const loginPage = new LoginPage(page);
     const homePage = new HomePage(page);
+    const scanSelectionPage = new ScanSelectionPage(page)
 
     await page.goto('https://myezra-staging.ezra.com/');
 
     //Login
-    await loginPage.login("playwright@test.com", "Test@500");
+    await loginPage.login("playwright@test.com", "Test@500"); //TODO: get rid of hard-coded credentials here
 
     //Book A Scan
     await homePage.clickBookAScanBtn();
-
-    await expect(page).toHaveURL('https://myezra-staging.ezra.com/sign-up/select-plan');
-
+    await scanSelectionPage.bookAScan();
+    //await scanSelectionPage.selectFirstScanPackage();
   });
 
 });
